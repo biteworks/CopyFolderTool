@@ -48,8 +48,9 @@ namespace CopyFolderTool
 
             if (sourcePath.Length != 0 && destinationPath.Length != 0)
             {
-                command = "/C ROBOCOPY " + @sourcePath + " " + @destinationPath + optionE + optionXO + optionMOV + standardOptions;
-                System.Diagnostics.Process.Start("CMD.exe", command);
+                command = "/K ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" "  + optionE + optionXO + optionMOV + standardOptions;
+                System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
+                process.WaitForExit();
             }
             else
             {
