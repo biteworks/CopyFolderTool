@@ -1,0 +1,27 @@
+﻿<Window x:Class="CopyFolderTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CopyFolderTool"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="360" Width="420" Background="#FFD1D1D1" ResizeMode="NoResize">
+        <StackPanel Margin="10">
+            <Label FontWeight="Bold">Source</Label>
+            <TextBox Name="fieldSource" Margin="5" Padding="3"/>
+
+            <Label FontWeight="Bold">Destination</Label>
+            <DockPanel  HorizontalAlignment="Left" Width="385">
+                <TextBox Name="fieldDestination" Margin="5" Padding="3" Width="320"/>
+                <Button Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="45" HorizontalAlignment="Right"/>
+            </DockPanel>
+
+            <Label FontWeight="Bold">Options</Label>
+            <CheckBox IsChecked="True" Name="option_E" Margin="5">Copy subfolders</CheckBox>
+            <CheckBox Name="option_XO" Margin="5">Copy only new or changed files</CheckBox>
+            <CheckBox Name="option_MOV" Margin="5">Move files (Source data will be deleted)</CheckBox>
+
+            <Button Content="Start copying" Margin="5,20,5,5" Click="copyToServer" Padding="3"/>
+            <Label FontSize="10" IsEnabled="False" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Bottom">Copyright by Tobias Wilhelm (Version 1.0.0)</Label>
+        </StackPanel>
+</Window>
