@@ -1,4 +1,4 @@
-# CopyFolderTool - Simple Robocopy GUI
+# CopyFolderTool - A simple Robocopy GUI
 
 ![Image of application on gradient](_images/header-image.jpg?raw=true "Image of application on gradient")
 
