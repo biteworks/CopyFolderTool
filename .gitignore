@@ -348,3 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+_install/Executables/CopyFolderTool.exe
+.gitignore
+_install/Executables/CopyFolderTool.exe.config
+_install/Executables/Microsoft.WindowsAPICodePack.Shell.dll
+_install/Executables/Microsoft.WindowsAPICodePack.dll
+_install/Executables/Microsoft.WindowsAPICodePack.Shell.xml
+_install/Executables/Microsoft.WindowsAPICodePack.xml
