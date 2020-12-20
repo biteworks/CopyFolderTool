@@ -5,23 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CopyFolderTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="360" Width="420" Background="#FFD1D1D1" ResizeMode="NoResize">
+        Title="CopyFolderTool" Height="410" Width="420" Background="#FFD1D1D1" ResizeMode="NoResize" Icon="Icon.ico">
         <StackPanel Margin="10">
-            <Label FontWeight="Bold">Source</Label>
+            <Label FontWeight="Bold">Source Folder</Label>
             <TextBox Name="fieldSource" Margin="5" Padding="3"/>
 
-            <Label FontWeight="Bold">Destination</Label>
+            <Label FontWeight="Bold">Destination Folder</Label>
             <DockPanel  HorizontalAlignment="Left" Width="400">
                 <TextBox Name="fieldDestination" Margin="5" Padding="3" Width="330"/>
                 <Button Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Left"/>
             </DockPanel>
 
-            <Label FontWeight="Bold">Options</Label>
+            <Label FontWeight="Bold">Copy Options</Label>
             <CheckBox IsChecked="True" Name="option_E" Margin="5">Copy subfolders</CheckBox>
             <CheckBox Name="option_XO" Margin="5">Copy only new or changed files</CheckBox>
             <CheckBox Name="option_MOV" Margin="5">Move files (Source data will be deleted)</CheckBox>
 
-            <Button Content="Start copying" Margin="5,20,5,5" Click="copyToServer" Padding="3"/>
+            <Label FontWeight="Bold">More Options</Label>
+            <CheckBox Name="option_Shutdown" Margin="5">Shutdown the computer after copying</CheckBox>
+
+            <Button Name="btn_startCopying" Content="Start copying" Margin="5,20,5,5" Click="copyToServer" Padding="3"/>
             <Label FontSize="10" IsEnabled="False" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Bottom">Copyright by Tobias Wilhelm (Version 1.0.0)</Label>
-        </StackPanel>
+    </StackPanel>
 </Window>

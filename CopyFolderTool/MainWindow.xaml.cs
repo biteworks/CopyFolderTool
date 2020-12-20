@@ -22,13 +22,14 @@ namespace CopyFolderTool
         private void copyToServer(object sender, RoutedEventArgs e)
         {
             string command;
-            string sourcePath = @fieldSource.Text;
-            string destinationPath = @fieldDestination.Text;
+            string sourcePath = fieldSource.Text;
+            string destinationPath = fieldDestination.Text;
 
             //Optionen
             string optionE = "";
             string optionXO = "";
             string optionMOV = "";
+            string optionClose = "";
             string standardOptions = " /MT:8 /FFT";
 
             if (option_E.IsChecked == true)
@@ -46,11 +47,27 @@ namespace CopyFolderTool
                 optionXO = " /MOV";
             }
 
+            if(option_Shutdown.IsChecked == true)
+            {
+                optionClose = "/C ";
+            }
+            else
+            {
+                optionClose = "/K ";
+            }
+
             if (sourcePath.Length != 0 && destinationPath.Length != 0)
             {
-                command = "/K ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" "  + optionE + optionXO + optionMOV + standardOptions;
+                btn_startCopying.IsEnabled = false;
+                command = optionClose + "ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" "  + optionE + optionXO + optionMOV + standardOptions;
                 System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
                 process.WaitForExit();
+                Application.Current.Shutdown();
+
+                if (option_Shutdown.IsChecked == true)
+                {
+                    _ = System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                }
             }
             else
             {
@@ -67,6 +84,12 @@ namespace CopyFolderTool
             {
                 fieldDestination.Text = dialog.FileName;
             }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
     }
 }
