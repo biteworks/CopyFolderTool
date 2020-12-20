@@ -1,4 +1,4 @@
-# CopyFolderTool
+# CopyFolderTool - Simple Robocopy GUI
 
 ![Image of application on gradient](_images/header-image.jpg?raw=true "Image of application on gradient")
 
@@ -14,6 +14,11 @@ In this age of remote working, large amounts of data often need to be copied to 
 2. Unzip the folder
 3. Run "_install.bat" as admin. All files will be copied to "C:/Tools/CopyFolderTools" 
 4. Right-click menu entry will be set automatically
+
+## Uninstall
+
+1. Run "_uninstall.bat" as admin
+2. Menu entry will be deleted and the tools folder also
    
 ## Usage
 
