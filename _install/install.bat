@@ -12,7 +12,7 @@ ECHO.
 
 ECHO 3. Registry entry will be set (needs admin rights)
 REM  set __COMPAT_LAYER=RunAsInvoker  
-REGEDIT.EXE  /S  "%~dp0\AddToRightclickMenu.reg"
+REGEDIT.EXE /S "%~dp0\AddToRightclickMenu.reg"
 ECHO ...Done
 ECHO.
 
