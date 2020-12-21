@@ -1,6 +1,6 @@
 # CopyFolderTool - A simple Robocopy GUI
 
-![Image of application on gradient](_images/header-image.jpg?raw=true "Image of application on gradient")
+![Image of application on gradient](screemshots/header-image.jpg?raw=true "Image of application on gradient")
 
 ## About
 
@@ -22,7 +22,7 @@ In this age of remote working, large amounts of data often need to be copied to 
    
 ## Usage
 
-![Image of application for instruction](_images/instruction-image.jpg?raw=true "Image of application for instruction")
+![Image of application for instruction](screenshots/instruction-image.jpg?raw=true "Image of application for instruction")
 
 1. Right-click on the folder you want to copy
 2. Execute "CopyFolderTool" in the context menu
