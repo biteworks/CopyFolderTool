@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CopyFolderTool"
         mc:Ignorable="d"
-        Title="CopyFolderTool" Height="410" Width="420" Background="#FFD1D1D1" ResizeMode="NoResize" Icon="Icon.ico">
+        Title="CopyFolderTool" Height="380" Width="420" Background="#FFD1D1D1" ResizeMode="NoResize" Icon="Icon-CopyFolderTool.ico">
         <StackPanel Margin="10">
             <Label FontWeight="Bold">Source Folder</Label>
             <TextBox Name="fieldSource" Margin="5" Padding="3"/>
@@ -24,7 +24,6 @@
             <Label FontWeight="Bold">More Options</Label>
             <CheckBox Name="option_Shutdown" Margin="5">Shutdown the computer after copying</CheckBox>
 
-            <Button Name="btn_startCopying" Content="Start copying" Margin="5,20,5,5" Click="copyToServer" Padding="3"/>
-            <Label FontSize="10" IsEnabled="False" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Bottom">Copyright by Tobias Wilhelm (Version 1.0.0)</Label>
+        <Button Name="btn_startCopying" Content="Start copying" Margin="5,20,5,5" Click="copyToServer" Padding="3"/>
     </StackPanel>
 </Window>
