@@ -1,6 +1,6 @@
 # CopyFolderTool - A simple Robocopy GUI
 
-![Image of application on gradient](screemshots/header-image.jpg?raw=true "Image of application on gradient")
+![Image of application on gradient](screenshots/header-image.jpg?raw=true "Image of application on gradient")
 
 ## About
 
