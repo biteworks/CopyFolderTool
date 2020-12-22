@@ -33,5 +33,5 @@ In this age of remote working, large amounts of data often need to be copied to 
 
 ## Future plans
 
-1. Savemode to restart copy process
-2. Option to start exe without parameters
+1. Save-mode to restart copy process
+2. ~~Option to start exe without parameters~~ (Done)
