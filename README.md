@@ -19,7 +19,7 @@ In this age of remote working, large amounts of data often need to be copied to 
 
 1. Run "_uninstall.bat" as admin
 2. Menu entry will be deleted and the tools folder also
-   
+
 ## Usage
 
 ![Image of application for instruction](screenshots/instruction-image.jpg?raw=true "Image of application for instruction")
@@ -30,3 +30,8 @@ In this age of remote working, large amounts of data often need to be copied to 
 4. Select options by enable the checkboxes
 5. Start copying by pressing the button
 6. A commandline window will open and show the copy process
+
+## Future plans
+
+1. Savemode to restart copy process
+2. Option to start exe without parameters
