@@ -30,7 +30,7 @@ namespace CopyFolderTool
             string optionXO = "";
             string optionMOV = "";
             string optionClose = "";
-            string standardOptions = " /MT:8 /FFT";
+            string standardOptions = " /MT:8";
 
             if (option_E.IsChecked == true)
             {
@@ -39,7 +39,7 @@ namespace CopyFolderTool
 
             if (option_XO.IsChecked == true)
             {
-                optionXO = " /XO";
+                optionXO = " /XO  /FFT";
             }
 
             if (option_MOV.IsChecked == true)
