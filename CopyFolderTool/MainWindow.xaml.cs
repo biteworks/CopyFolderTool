@@ -13,17 +13,17 @@ namespace CopyFolderTool
         {
             InitializeComponent();
             
-            if (App.mArgs.Length > 0)
+            if (App.mArgs != null && App.mArgs.Length > 0)
             {
-                String[] args = App.mArgs;
-                fieldSource.Text = @args[0];
+                //String[] args = App.mArgs;
+                fieldSource.Text = checkForBackslash(App.mArgs[0]);
             }
         }
         private void copyToServer(object sender, RoutedEventArgs e)
         {
             string command;
-            string sourcePath = fieldSource.Text;
-            string destinationPath = fieldDestination.Text;
+            string sourcePath = checkForBackslash(fieldSource.Text);
+            string destinationPath = checkForBackslash(fieldDestination.Text);
 
             //Optionen
             string optionE = "";
@@ -83,6 +83,19 @@ namespace CopyFolderTool
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 fieldDestination.Text = dialog.FileName;
+            }
+        }
+
+        private string checkForBackslash(string inputStr)
+        {
+            string lastChar = inputStr.Substring(inputStr.Length - 1);
+            if (lastChar == "\\")
+            {
+                return inputStr.Remove(inputStr.Length - 1);
+            }
+            else
+            {
+                return inputStr;
             }
         }
 
