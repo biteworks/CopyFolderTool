@@ -7,7 +7,7 @@ IF NOT EXIST %InstallDirectory%NUL MKDIR %InstallDirectory%
 ECHO.
 
 ECHO 2. Copy files to directory
-COPY %CopyToFolder% %InstallDirectory%
+ROBOCOPY %CopyToFolder% %InstallDirectory% /XO /E
 ECHO.
 
 ECHO 3. Registry entry will be set (needs admin rights)
