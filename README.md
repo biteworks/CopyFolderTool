@@ -17,7 +17,7 @@ In this age of remote working, large amounts of data often need to be copied to 
 
 ## Uninstall
 
-1. Run "_uninstall.bat" as admin
+1. Run "uninstall.bat" as admin
 2. Menu entry will be deleted and the tools folder also
 
 ## Usage
