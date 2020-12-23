@@ -12,7 +12,7 @@ In this age of remote working, large amounts of data often need to be copied to 
 
 1. Download latest release
 2. Unzip the folder
-3. Run "_install.bat" as admin. All files will be copied to "C:/Tools/CopyFolderTools" 
+3. Run "install.bat" as admin. All files will be copied to "C:/Tools/CopyFolderTools" 
 4. Right-click menu entry will be set automatically
 
 ## Uninstall
