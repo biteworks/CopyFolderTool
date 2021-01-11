@@ -5,16 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CopyFolderTool"
         mc:Ignorable="d"
-        Title="CopyFolderTool" Height="400" Width="420" Background="#FFD1D1D1" ResizeMode="NoResize" Icon="Icon-CopyFolderTool.ico">
+        Title="CopyFolderTool" Height="400" Width="420" Background="#FFD1D1D1" Icon="Icon-CopyFolderTool.ico">
     <StackPanel Margin="10">
         <Label FontWeight="Bold">Source Folder</Label>
-        <TextBox Name="fieldSource" Margin="5" Padding="3"/>
+        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Name="fieldSource" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch"/>
+            <Button Name="buttonSourcePath" Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
+        </Grid>
 
         <Label FontWeight="Bold">Destination Folder</Label>
-        <DockPanel  HorizontalAlignment="Left" Width="400">
-            <TextBox Name="fieldDestination" Margin="5" Padding="3" Width="330"/>
-            <Button Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Left" ToolTip="Select Folder"/>
-        </DockPanel>
+        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Name="fieldDestination" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch"/>
+            <Button Name="buttonDestinationPath" Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
+        </Grid>
 
         <Label FontWeight="Bold">Copy Options</Label>
         <CheckBox IsChecked="True" Name="option_E" Margin="5">Copy subfolders</CheckBox>
@@ -25,6 +36,6 @@
         <CheckBox Name="option_Shutdown" Margin="5">Shutdown the computer after copying</CheckBox>
 
         <Button Name="btn_startCopying" Content="Start copying" Margin="5,20,5,5" Click="copyToServer" Padding="3"/>
-        <TextBlock Margin="5" IsEnabled="False" Opacity="0.5" HorizontalAlignment="Right">Version 1.0.2</TextBlock>
+        <TextBlock Margin="5" IsEnabled="False" Opacity="0.5" HorizontalAlignment="Right">Version 1.0.3</TextBlock>
     </StackPanel>
 </Window>

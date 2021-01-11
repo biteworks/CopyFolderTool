@@ -77,12 +77,24 @@ namespace CopyFolderTool
 
         private void selectDestinationFolder(object sender, RoutedEventArgs e)
         {
+            var button = sender as System.Windows.Controls.Button;
             var dialog = new CommonOpenFileDialog();
             dialog.IsFolderPicker = true;
 
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                fieldDestination.Text = dialog.FileName;
+                switch (button.Name)
+                {
+                    case "buttonSourcePath":
+                        fieldSource.Text = dialog.FileName;
+                        break;
+                    case "buttonDestinationPath":
+                        fieldDestination.Text = dialog.FileName;
+                        break;
+                    default:
+                        Console.WriteLine("Wrong Button");
+                        break;
+                }
             }
         }
 

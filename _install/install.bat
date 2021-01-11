@@ -2,12 +2,12 @@
 SET InstallDirectory="C:\Tools\CopyFolderTool\"
 SET CopyToFolder="%~dp0Executables\"
 
-ECHO 1. Check for "C:/Tools" folder
+ECHO 1. Check for "C:\Tools\CopyFolderTool\" folder
 IF NOT EXIST %InstallDirectory%NUL MKDIR %InstallDirectory%
 ECHO.
 
 ECHO 2. Copy files to directory
-ROBOCOPY %CopyToFolder% %InstallDirectory% /XO /E
+COPY %CopyToFolder% %InstallDirectory%
 ECHO.
 
 ECHO 3. Registry entry will be set (needs admin rights)

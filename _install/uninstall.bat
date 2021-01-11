@@ -1,7 +1,7 @@
 @ECHO OFF
 SET InstallDirectory="C:\Tools\CopyFolderTool\"
 
-ECHO 1. Remove "C:/Tools/CopyFolderTool" folder
+ECHO 1. Remove "C:\Tools\CopyFolderTool\" folder
 RMDIR /Q /S %InstallDirectory%
 ECHO ...Done
 ECHO.
