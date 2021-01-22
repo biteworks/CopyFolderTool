@@ -66,6 +66,7 @@ namespace CopyFolderTool
                     System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
                     process.WaitForExit();
                     Application.Current.Shutdown();
+                    btn_startComparing.IsEnabled = true;
 
                     if (option_Shutdown.IsChecked == true)
                     {
@@ -78,6 +79,7 @@ namespace CopyFolderTool
                     command = optionClose + "ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" " + "/L /NJH /NJS /NP /NS";
                     System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
                     process.WaitForExit();
+                    btn_startComparing.IsEnabled = true;
                 }
             }
             else
