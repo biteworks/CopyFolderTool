@@ -15,12 +15,13 @@ namespace CopyFolderTool
             
             if (App.mArgs != null && App.mArgs.Length > 0)
             {
-                //String[] args = App.mArgs;
                 fieldSource.Text = checkForBackslash(App.mArgs[0]);
             }
         }
-        private void copyToServer(object sender, RoutedEventArgs e)
+        private void StartRobocopy(object sender, RoutedEventArgs e)
         {
+            var button = sender as System.Windows.Controls.Button;
+
             string command;
             string sourcePath = checkForBackslash(fieldSource.Text);
             string destinationPath = checkForBackslash(fieldDestination.Text);
@@ -58,15 +59,25 @@ namespace CopyFolderTool
 
             if (sourcePath.Length != 0 && destinationPath.Length != 0)
             {
-                btn_startCopying.IsEnabled = false;
-                command = optionClose + "ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" "  + optionE + optionXO + optionMOV + standardOptions;
-                System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
-                process.WaitForExit();
-                Application.Current.Shutdown();
-
-                if (option_Shutdown.IsChecked == true)
+                if (button.Name == "btn_startCopying")
                 {
-                    _ = System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                    btn_startCopying.IsEnabled = false;
+                    command = optionClose + "ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" " + optionE + optionXO + optionMOV + standardOptions;
+                    System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
+                    process.WaitForExit();
+                    Application.Current.Shutdown();
+
+                    if (option_Shutdown.IsChecked == true)
+                    {
+                        _ = System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                    }
+                }
+                else if (button.Name == "btn_startComparing")
+                {
+                    btn_startComparing.IsEnabled = false;
+                    command = optionClose + "ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" " + "/L /NJH /NJS /NP /NS";
+                    System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
+                    process.WaitForExit();
                 }
             }
             else
@@ -85,10 +96,10 @@ namespace CopyFolderTool
             {
                 switch (button.Name)
                 {
-                    case "buttonSourcePath":
+                    case "btn_SourcePath":
                         fieldSource.Text = dialog.FileName;
                         break;
-                    case "buttonDestinationPath":
+                    case "btn_DestinationPath":
                         fieldDestination.Text = dialog.FileName;
                         break;
                     default:

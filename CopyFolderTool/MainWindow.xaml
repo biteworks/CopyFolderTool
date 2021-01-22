@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CopyFolderTool"
         mc:Ignorable="d"
-        Title="CopyFolderTool" Height="400" Width="420" Background="#FFD1D1D1" Icon="Icon-CopyFolderTool.ico">
+        Title="CopyFolderTool" Height="400" MaxHeight="400" Width="420" MaxWidth="550" Background="#FFD1D1D1" Icon="Icon-CopyFolderTool.ico"
+        ResizeMode="CanResize">
     <StackPanel Margin="10">
         <Label FontWeight="Bold">Source Folder</Label>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
@@ -14,7 +15,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBox Name="fieldSource" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch"/>
-            <Button Name="buttonSourcePath" Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
+            <Button Name="btn_SourcePath" Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
         </Grid>
 
         <Label FontWeight="Bold">Destination Folder</Label>
@@ -24,7 +25,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBox Name="fieldDestination" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch"/>
-            <Button Name="buttonDestinationPath" Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
+            <Button Name="btn_DestinationPath" Content=". . ." Margin="5" Click="selectDestinationFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
         </Grid>
 
         <Label FontWeight="Bold">Copy Options</Label>
@@ -34,8 +35,14 @@
 
         <Label FontWeight="Bold">More Options</Label>
         <CheckBox Name="option_Shutdown" Margin="5">Shutdown the computer after copying</CheckBox>
-
-        <Button Name="btn_startCopying" Content="Start copying" Margin="5,20,5,5" Click="copyToServer" Padding="3"/>
-        <TextBlock Margin="5" IsEnabled="False" Opacity="0.5" HorizontalAlignment="Right">Version 1.0.3</TextBlock>
+        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button Name="btn_startComparing" Content="Compare folders" Margin="5,0,5,5" Click="StartRobocopy" Padding="3" Grid.Column="0"/>
+            <Button Name="btn_startCopying" Content="Start copying" Margin="5,0,5,5" Click="StartRobocopy" Padding="3" Grid.Column="1"/>
+        </Grid>
+        <TextBlock Margin="5" IsEnabled="False" Opacity="0.5" HorizontalAlignment="Right">Version 1.0.4</TextBlock>
     </StackPanel>
 </Window>
