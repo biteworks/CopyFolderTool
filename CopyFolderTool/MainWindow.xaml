@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CopyFolderTool"
         mc:Ignorable="d"
-        Title="CopyFolderTool" Height="490" MaxHeight="600" Width="420" MaxWidth="550" Background="#FFD1D1D1" Icon="Icon-CopyFolderTool.ico"
-        ResizeMode="CanResize">
+        Title="CopyFolderTool" SizeToContent="Height" Width="420" MaxWidth="550" Background="#FFD1D1D1" Icon="Icon-CopyFolderTool.ico"
+        ResizeMode="CanMinimize">
     <StackPanel Margin="10">
         <Label FontWeight="Bold">Source Folder</Label>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
