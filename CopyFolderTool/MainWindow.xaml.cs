@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
@@ -25,6 +26,11 @@ namespace CopyFolderTool
             if (App.mArgs != null && App.mArgs.Length > 0)
             {
                 fieldSource.Text = checkForBackslash(App.mArgs[0]);
+                int filesCount = getFilesCount(fieldSource.Text);
+                if(filesCount > 0)
+                {
+                    fileCountNotice.Text = "Source directory contains " + filesCount + " files.";
+                }
             }
 
             readLogfilePath();
@@ -133,6 +139,11 @@ namespace CopyFolderTool
                 {
                     case "btn_SourcePath":
                         fieldSource.Text = dialog.FileName;
+                        int filesCount = getFilesCount(fieldSource.Text);
+                        if (filesCount > 0)
+                        {
+                            fileCountNotice.Text = "Source directory contains " + filesCount + " files.";
+                        }
                         break;
                     case "btn_DestinationPath":
                         fieldDestination.Text = dialog.FileName;
@@ -160,6 +171,19 @@ namespace CopyFolderTool
                 return inputStr;
             }
         }
+
+        private static int getFilesCount(string path)
+        {
+            try
+            {
+                var filesCount = Directory.GetFiles(@path, "*.*", SearchOption.AllDirectories).Count();
+                return filesCount;
+            }
+            catch
+            {
+                return 0;
+            }
+        } 
 
         private void readLogfilePath()
         {
