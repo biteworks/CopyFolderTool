@@ -29,7 +29,7 @@ namespace CopyFolderTool
                 int filesCount = getFilesCount(fieldSource.Text);
                 if(filesCount > 0)
                 {
-                    fileCountNotice.Text = "Source directory contains " + filesCount + " files.";
+                    fileCountNotice.Text = "Source folder contains " + filesCount + " files.";
                 }
             }
 
@@ -142,7 +142,7 @@ namespace CopyFolderTool
                         int filesCount = getFilesCount(fieldSource.Text);
                         if (filesCount > 0)
                         {
-                            fileCountNotice.Text = "Source directory contains " + filesCount + " files.";
+                            fileCountNotice.Text = "Source folder contains " + filesCount + " files.";
                         }
                         break;
                     case "btn_DestinationPath":
@@ -197,13 +197,16 @@ namespace CopyFolderTool
             }
             else {
                 string[] lines = File.ReadAllLines(strSettingsFilePath);
-                fieldLogfile.Text = lines[0];
+                //fieldLogfile.Text = lines[0];
+                fieldLogfile.Text = UserSettings.Default.logFilePath;
             }
             return;
         }
         private void saveLogfilePath(string path)
         {
             File.WriteAllText(strSettingsFilePath, path);
+            UserSettings.Default.logFilePath = path;
+            UserSettings.Default.Save();
             return;
         }
 
