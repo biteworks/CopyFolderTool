@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CopyFolderTool" GeneratedClassName="UserSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="logFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\logs\</Value>
+    </Setting>
+    <Setting Name="excludedFolders" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Backup</Value>
+    </Setting>
+    <Setting Name="excludedFiletypes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">*.blend1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

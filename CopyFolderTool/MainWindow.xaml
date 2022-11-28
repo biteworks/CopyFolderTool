@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="CopyFolderTool" SizeToContent="Height" Width="420" MaxWidth="550" Background="#FFD1D1D1" Icon="Icon-CopyFolderTool.ico"
         ResizeMode="CanMinimize">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="b2v"/>
+    </Window.Resources>
     <StackPanel Margin="10">
-        <Label FontWeight="Bold">Source Folder</Label>
+        <Label FontWeight="Bold">Source folder</Label>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
@@ -18,7 +21,7 @@
             <Button Name="btn_SourcePath" Content=". . ." Margin="5" Click="selectFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
         </Grid>
 
-        <Label FontWeight="Bold">Destination Folder</Label>
+        <Label FontWeight="Bold">Destination folder</Label>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
@@ -28,24 +31,41 @@
             <Button Name="btn_DestinationPath" Content=". . ." Margin="5" Click="selectFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
         </Grid>
 
-        <Label FontWeight="Bold">Copy Options</Label>
+        <Label FontWeight="Bold">Basic options</Label>
         <CheckBox IsChecked="True" Name="option_E" Margin="5">Copy subfolders</CheckBox>
         <CheckBox Name="option_XO" Margin="5">Copy only new or changed files</CheckBox>
         <CheckBox Name="option_MOV" Margin="5">Move files (Source data will be deleted)</CheckBox>
 
-        <Label FontWeight="Bold">More Options</Label>
+        <Label FontWeight="Bold">Filter options</Label>
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Name="option_XD" Margin="5">Exclude Folders</CheckBox>
+                <TextBlock Margin="4" Opacity="0.5" Visibility="{Binding IsChecked, ElementName=option_XD, Converter={StaticResource b2v}}">(e.g. "Backup, Export, temp")</TextBlock>
+            </StackPanel>
+        </Grid>
+        <TextBox Name="fieldExcludeFolders" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch" Visibility="{Binding IsChecked, ElementName=option_XD, Converter={StaticResource b2v}}"/>
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Name="option_XF" Margin="5">Exclude files by type</CheckBox>
+                <TextBlock Margin="4" Opacity="0.5" Visibility="{Binding IsChecked, ElementName=option_XF, Converter={StaticResource b2v}}">(e.g. "*.jpg, *.bak, *.csv")</TextBlock>
+            </StackPanel>
+        </Grid>
+        <TextBox Name="fieldExcludeFiletypes" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch" Visibility="{Binding IsChecked, ElementName=option_XF, Converter={StaticResource b2v}}"/>
+
+        <Label FontWeight="Bold">More options</Label>
         <CheckBox Name="option_Shutdown" Margin="5">Shutdown the computer after copying</CheckBox>
         <CheckBox Name="option_Logfile" Margin="5">Create Logfile</CheckBox>
-        <Label FontWeight="Bold">Logfile Folder</Label>
-        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+        <Label FontWeight="Bold" Visibility="{Binding IsChecked, ElementName=option_Logfile, Converter={StaticResource b2v}}">Logfile Folder</Label>
+        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Visibility="{Binding IsChecked, ElementName=option_Logfile, Converter={StaticResource b2v}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Name="fieldLogfile" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch" TextWrapping="NoWrap" AcceptsReturn="False" IsEnabled="{Binding ElementName=option_Logfile, Path=IsChecked, TargetNullValue=false}"/>
-            <Button Name="btn_Logfile" Content=". . ." Margin="5" Click="selectFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1" IsEnabled="{Binding ElementName=option_Logfile, Path=IsChecked, TargetNullValue=false}"/>
+            <TextBox Name="fieldLogfile" Margin="5" Padding="3" Grid.Column="0" HorizontalAlignment="Stretch" TextWrapping="NoWrap" AcceptsReturn="False"/>
+            <Button Name="btn_Logfile" Content=". . ." Margin="5" Click="selectFolder" Padding="3" Width="38" HorizontalAlignment="Right" ToolTip="Select Folder" Grid.Column="1"/>
         </Grid>
-        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Margin="0,20,0,0">
+        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Margin="0,20,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*" />
@@ -53,6 +73,14 @@
             <Button Name="btn_startComparing" Content="Compare folders" Margin="5,0,5,5" Click="StartRobocopy" Padding="3" Grid.Column="0"/>
             <Button Name="btn_startCopying" Content="Start copying" Margin="5,0,5,5" Click="StartRobocopy" Padding="3" Grid.Column="1"/>
         </Grid>
-        <TextBlock Margin="5" IsEnabled="False" Opacity="0.5" HorizontalAlignment="Right">Version 1.1.0</TextBlock>
+
+        <StatusBar DockPanel.Dock="Bottom" Margin="-10" Padding="5" Background="#FFD1D1D1">
+            <StatusBarItem HorizontalAlignment="Left">
+                <TextBlock Name="fileCountNotice" IsEnabled="False" Opacity="0.5"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock IsEnabled="False" Opacity="0.5">Version 1.2.0</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
     </StackPanel>
 </Window>
