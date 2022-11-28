@@ -34,5 +34,29 @@ namespace CopyFolderTool {
                 this["logFilePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Backup")]
+        public string excludedFolders {
+            get {
+                return ((string)(this["excludedFolders"]));
+            }
+            set {
+                this["excludedFolders"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("*.blend1")]
+        public string excludedFiletypes {
+            get {
+                return ((string)(this["excludedFiletypes"]));
+            }
+            set {
+                this["excludedFiletypes"] = value;
+            }
+        }
     }
 }

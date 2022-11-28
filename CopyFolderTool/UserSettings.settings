@@ -5,5 +5,11 @@
     <Setting Name="logFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\logs\</Value>
     </Setting>
+    <Setting Name="excludedFolders" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Backup</Value>
+    </Setting>
+    <Setting Name="excludedFiletypes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">*.blend1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

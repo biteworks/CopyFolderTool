@@ -2,10 +2,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Shapes;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 
 namespace CopyFolderTool
 {
@@ -33,7 +31,7 @@ namespace CopyFolderTool
                 }
             }
 
-            readLogfilePath();
+            loadSettings();
         }
         private void StartRobocopy(object sender, RoutedEventArgs e)
         {
@@ -59,6 +57,8 @@ namespace CopyFolderTool
             string optionE = "";
             string optionXO = "";
             string optionMOV = "";
+            string optionXD = "";
+            string optionXF = "";
             string optionLog = "";
             string optionClose = "";
             string standardOptions = " /MT:8";
@@ -76,6 +76,63 @@ namespace CopyFolderTool
             if (option_MOV.IsChecked == true)
             {
                 optionXO = " /MOV";
+            }
+
+            if (option_XD.IsChecked == true)
+            {
+                if(String.IsNullOrEmpty(fieldExcludeFolders.Text))
+                {
+                    MessageBox.Show("Excluded folder names are missing!", "Folder names missing", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else
+                {
+                    string tempXDStr = fieldExcludeFolders.Text.Replace(" ", "");
+                    string[] tempFolderNames = tempXDStr.Split(',');
+                    optionXD = " /XD";
+
+                    foreach (var folderName in tempFolderNames)
+                    {
+                        optionXD += " \"" + folderName.Replace(" ", "") + "\"";
+                    }
+
+                    UserSettings.Default.excludedFolders = fieldExcludeFolders.Text;
+                    UserSettings.Default.Save();
+                }
+            }
+
+            if (option_XF.IsChecked == true)
+            {
+                string filetypePattern = @"\*\.[A-Za-z0-9]*";
+                Regex reg = new Regex(filetypePattern);
+
+                if (String.IsNullOrEmpty(fieldExcludeFiletypes.Text))
+                {
+                    MessageBox.Show("Excluded filetypes are missing!", "Filetypes missing", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else
+                {
+                    string tempXFString = fieldExcludeFiletypes.Text.Replace(" ", "");
+                    string[] tempFiletypes = tempXFString.Split(',');
+                    optionXF = " /XF";
+
+                    foreach (var filetype in tempFiletypes)
+                    {
+                        if (reg.IsMatch(filetype))
+                        {
+                            optionXF += " \"" + filetype.Replace(" ", "") + "\"";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Check filetypes requirements (e.g. *.jpg)!", "Filetypes", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+
+                    UserSettings.Default.excludedFiletypes = fieldExcludeFiletypes.Text;
+                    UserSettings.Default.Save();
+                }
             }
 
             if (option_Logfile.IsChecked == true)
@@ -105,7 +162,7 @@ namespace CopyFolderTool
             if (button.Name == "btn_startCopying")
             {
                 btn_startCopying.IsEnabled = false;
-                command = optionClose + "ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" " + optionE + optionXO + optionMOV + optionLog + standardOptions;
+                command = optionClose + "ROBOCOPY \"" + @sourcePath + "\" \"" + @destinationPath + "\" " + optionE + optionXO + optionMOV + optionXD + optionXF + optionLog + standardOptions;
                 System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
                 process.WaitForExit();
                 Application.Current.Shutdown();
@@ -150,7 +207,8 @@ namespace CopyFolderTool
                         break;
                     case "btn_Logfile":
                         fieldLogfile.Text = dialog.FileName;
-                        saveLogfilePath(fieldLogfile.Text);
+                        UserSettings.Default.logFilePath = fieldLogfile.Text;
+                        UserSettings.Default.Save();
                         break;
                     default:
                         Console.WriteLine("Wrong Button");
@@ -185,28 +243,11 @@ namespace CopyFolderTool
             }
         } 
 
-        private void readLogfilePath()
+        private void loadSettings()
         {
-            if (!File.Exists(strSettingsFilePath))
-            {
-                using (StreamWriter sw = File.CreateText(strSettingsFilePath))
-                {
-                    sw.WriteLine("C:\\Logs\\");
-                }
-                fieldLogfile.Text = "C:\\Logs\\";
-            }
-            else {
-                string[] lines = File.ReadAllLines(strSettingsFilePath);
-                //fieldLogfile.Text = lines[0];
-                fieldLogfile.Text = UserSettings.Default.logFilePath;
-            }
-            return;
-        }
-        private void saveLogfilePath(string path)
-        {
-            File.WriteAllText(strSettingsFilePath, path);
-            UserSettings.Default.logFilePath = path;
-            UserSettings.Default.Save();
+            fieldLogfile.Text = UserSettings.Default.logFilePath;
+            fieldExcludeFolders.Text = UserSettings.Default.excludedFolders;
+            fieldExcludeFiletypes.Text = UserSettings.Default.excludedFiletypes;
             return;
         }
 
