@@ -75,9 +75,6 @@
         </Grid>
 
         <StatusBar DockPanel.Dock="Bottom" Margin="-10" Padding="5" Background="#FFD1D1D1">
-            <StatusBarItem HorizontalAlignment="Left">
-                <TextBlock Name="fileCountNotice" IsEnabled="False" Opacity="0.5"/>
-            </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <TextBlock IsEnabled="False" Opacity="0.5">Version 1.2.0</TextBlock>
             </StatusBarItem>

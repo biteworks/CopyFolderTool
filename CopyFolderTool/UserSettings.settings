@@ -9,7 +9,7 @@
       <Value Profile="(Default)">Backup</Value>
     </Setting>
     <Setting Name="excludedFiletypes" Type="System.String" Scope="User">
-      <Value Profile="(Default)">*.blend1</Value>
+      <Value Profile="(Default)">*.bak</Value>
     </Setting>
   </Settings>
 </SettingsFile>

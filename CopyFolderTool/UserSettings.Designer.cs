@@ -49,7 +49,7 @@ namespace CopyFolderTool {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("*.blend1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("*.bak")]
         public string excludedFiletypes {
             get {
                 return ((string)(this["excludedFiletypes"]));

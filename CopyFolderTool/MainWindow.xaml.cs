@@ -13,10 +13,6 @@ namespace CopyFolderTool
     public partial class MainWindow : Window
     {
 
-        static string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-        static string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
-        static string strSettingsFilePath = System.IO.Path.Combine(strWorkPath, "Paths.config");
-
         public MainWindow()
         {
             InitializeComponent();
@@ -24,11 +20,6 @@ namespace CopyFolderTool
             if (App.mArgs != null && App.mArgs.Length > 0)
             {
                 fieldSource.Text = checkForBackslash(App.mArgs[0]);
-                int filesCount = getFilesCount(fieldSource.Text);
-                if(filesCount > 0)
-                {
-                    fileCountNotice.Text = "Source folder contains " + filesCount + " files.";
-                }
             }
 
             loadSettings();
@@ -196,11 +187,6 @@ namespace CopyFolderTool
                 {
                     case "btn_SourcePath":
                         fieldSource.Text = dialog.FileName;
-                        int filesCount = getFilesCount(fieldSource.Text);
-                        if (filesCount > 0)
-                        {
-                            fileCountNotice.Text = "Source folder contains " + filesCount + " files.";
-                        }
                         break;
                     case "btn_DestinationPath":
                         fieldDestination.Text = dialog.FileName;
@@ -229,19 +215,6 @@ namespace CopyFolderTool
                 return inputStr;
             }
         }
-
-        private static int getFilesCount(string path)
-        {
-            try
-            {
-                var filesCount = Directory.GetFiles(@path, "*.*", SearchOption.AllDirectories).Count();
-                return filesCount;
-            }
-            catch
-            {
-                return 0;
-            }
-        } 
 
         private void loadSettings()
         {
