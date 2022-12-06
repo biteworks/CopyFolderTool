@@ -58,5 +58,16 @@ namespace CopyFolderTool {
                 this["excludedFiletypes"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int threads {
+            get {
+                return ((int)(this["threads"]));
+            }
+            set {
+                this["threads"] = value;
+            }
+        }
     }
 }

@@ -11,5 +11,8 @@
     <Setting Name="excludedFiletypes" Type="System.String" Scope="User">
       <Value Profile="(Default)">*.bak</Value>
     </Setting>
+    <Setting Name="threads" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

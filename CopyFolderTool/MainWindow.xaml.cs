@@ -49,7 +49,7 @@ namespace CopyFolderTool
             string optionXO = "";
             string optionMOV = "";
             string optionXD = "";
-            string optionXF = "";
+            string optionXF = " /XF \"Thumbs. db\" \"desktop.ini\"";
             string optionLog = "";
             string optionClose = "";
             string standardOptions = " /MT:8";
@@ -106,7 +106,6 @@ namespace CopyFolderTool
                 {
                     string tempXFString = fieldExcludeFiletypes.Text.Replace(" ", "");
                     string[] tempFiletypes = tempXFString.Split(',');
-                    optionXF = " /XF";
 
                     foreach (var filetype in tempFiletypes)
                     {
